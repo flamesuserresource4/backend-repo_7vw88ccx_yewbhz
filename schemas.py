@@ -38,11 +38,12 @@ class Product(BaseModel):
     category: str = Field(..., description="Product category")
     in_stock: bool = Field(True, description="Whether product is in stock")
 
-# Add your own schemas here:
-# --------------------------------------------------
+# Birthday site schemas
 
-# Note: The Flames database viewer will automatically:
-# 1. Read these schemas from GET /schema endpoint
-# 2. Use them for document validation when creating/editing
-# 3. Handle all database operations (CRUD) directly
-# 4. You don't need to create any database endpoints!
+class Wish(BaseModel):
+    """
+    Wishes left by friends and guests for the birthday girl.
+    Collection name: "wish"
+    """
+    name: str = Field(..., min_length=1, max_length=50, description="Sender name")
+    message: str = Field(..., min_length=1, max_length=300, description="Wish message")
